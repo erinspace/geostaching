@@ -13,27 +13,28 @@ import settings
 @app.route('/mustache')
 def index():
 
-    api_url = 'https://api.instagram.com/v1/tags/beardo/media/recent?client_id={}'.format(settings.CLIENT_ID)
-    
+    api_url = 'https://api.instagram.com/v1/tags/mustache/media/recent?client_id={}'.format(settings.CLIENT_ID)
+
     data = requests.get(api_url).json()['data']
 
     thing1 = random.choice(data)
     thing2 = random.choice(data)
 
+    # import pdb; pdb.set_trace()
+
     one = thing1['images']['low_resolution']['url']
     two = thing2['images']['low_resolution']['url']
 
-    return render_template('index.html', 
-                            )
+    # return render_template('index.html')
 
-    # return '<html><img src={}><img src={}></html>'.format(one, two)
+    return '<html><img src={}><img src={}></html>'.format(one, two)
 
 
 @app.route('/cats')
 def cats():
 
     api_url = 'https://api.instagram.com/v1/tags/cats/media/recent?client_id={}'.format(settings.CLIENT_ID)
-    
+
     data = requests.get(api_url).json()['data']
 
     thing1 = random.choice(data)
