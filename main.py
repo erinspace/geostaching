@@ -20,8 +20,6 @@ def index():
     thing1 = random.choice(data)
     thing2 = random.choice(data)
 
-    # import pdb; pdb.set_trace()
-
     one = thing1['images']['low_resolution']['url']
     two = thing2['images']['low_resolution']['url']
 
