@@ -10,7 +10,7 @@ import settings
 
 @app.route('/')
 @app.route('/index')
-@app.route('/mustache')
+@app.route('/mustaches')
 def index():
 
     api_url = 'https://api.instagram.com/v1/tags/mustache/media/recent?client_id={}'.format(settings.CLIENT_ID)
@@ -23,9 +23,9 @@ def index():
     one = thing1['images']['low_resolution']['url']
     two = thing2['images']['low_resolution']['url']
 
-    # return render_template('index.html')
+    return render_template('index.html', one=one, two=two)
 
-    return '<html><img src={}><img src={}></html>'.format(one, two)
+    # return '<html><img src={}><img src={}></html>'.format(one, two)
 
 
 @app.route('/cats')
@@ -40,7 +40,6 @@ def cats():
 
     one = thing1['images']['low_resolution']['url']
     two = thing2['images']['low_resolution']['url']
-
 
     return '<html><img src={}><img src={}></html>'.format(one, two)
 
