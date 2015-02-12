@@ -1,12 +1,25 @@
-from flask import Flask
-app = Flask(__name__)
+from contextlib import closing
+from flask import Flask, render_template
 
-from flask import render_template
-
+import sqlite3
+import random
 import requests
-import random 
 
 import settings
+
+app = Flask(__name__)
+
+
+def connect_db():
+    return sqlite3.connect(settings.DATABASE)
+
+
+def init_db():
+    with closing(connect_db()) as db:
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+
 
 @app.route('/')
 @app.route('/index')
@@ -25,8 +38,6 @@ def index():
 
     return render_template('index.html', one=one, two=two)
 
-    # return '<html><img src={}><img src={}></html>'.format(one, two)
-
 
 @app.route('/cats')
 def cats():
@@ -41,7 +52,8 @@ def cats():
     one = thing1['images']['low_resolution']['url']
     two = thing2['images']['low_resolution']['url']
 
-    return '<html><img src={}><img src={}></html>'.format(one, two)
+    return render_template('index.html', one=one, two=two)
+
 
 if __name__ == '__main__':
     app.debug = True

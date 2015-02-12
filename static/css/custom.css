@@ -1,4 +1,10 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+}
+
 .stache {
-    max-height: 700px;
-    border-radius: 200px
+    max-height: 50px;
 }
