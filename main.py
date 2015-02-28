@@ -39,6 +39,22 @@ def index():
     return render_template('index.html', one=one, two=two)
 
 
+@app.route('/geostaching')
+def geostaching():
+
+    api_url = 'https://api.instagram.com/v1/tags/geostaching/media/recent?client_id={}'.format(settings.CLIENT_ID)
+
+    data = requests.get(api_url).json()['data']
+
+    thing1 = random.choice(data)
+    thing2 = random.choice(data)
+
+    one = thing1['images']['low_resolution']['url']
+    two = thing2['images']['low_resolution']['url']
+
+    return render_template('index.html', one=one, two=two)
+
+
 @app.route('/cats')
 def cats():
 
