@@ -71,6 +71,24 @@ def cats():
     return render_template('index.html', one=one, two=two)
 
 
+@app.route('/catvsmustache')
+def catvsmustache():
+
+    cat = 'https://api.instagram.com/v1/tags/cat/media/recent?client_id={}'.format(settings.CLIENT_ID)
+    mustache = 'https://api.instagram.com/v1/tags/mustache/media/recent?client_id={}'.format(settings.CLIENT_ID)
+
+    cat_data = requests.get(cat).json()['data']
+    mustache_data = requests.get(mustache).json()['data']
+
+    thing1 = random.choice(cat_data)
+    thing2 = random.choice(mustache_data)
+
+    one = thing1['images']['low_resolution']['url']
+    two = thing2['images']['low_resolution']['url']
+
+    return render_template('index.html', one=one, two=two)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
