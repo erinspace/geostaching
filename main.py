@@ -1,8 +1,8 @@
 from contextlib import closing
 from flask import Flask, render_template
 
-import sqlite3
 import random
+import sqlite3
 import requests
 
 import settings
