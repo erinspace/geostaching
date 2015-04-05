@@ -23,7 +23,7 @@ def init_db():
 
 @app.route('/')
 @app.route('/index')
-@app.route('/mustaches')
+@app.route('/mustache')
 def index():
 
     api_url = 'https://api.instagram.com/v1/tags/mustache/media/recent?client_id={}'.format(settings.CLIENT_ID)
